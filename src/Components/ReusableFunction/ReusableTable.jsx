@@ -14,12 +14,13 @@ const ReusableTable = ({
   heading = [],
   tableData = [],
   refetch = () => {},
-  OnPay = () => {},
+  onPay = () => {},
   OnEdit = () => {},
   MakeAdmin = () => {},
   MakeLibrarian = () => {},
   onManage = () => {},
   onDelete = () => {},
+  onCanceled = () => {},
 }) => {
   return (
     <div>
@@ -107,13 +108,7 @@ const ReusableTable = ({
                       </TableCell>
                     )
                   }
-                  if (col === 'Pay') {
-                    return (
-                      <TableCell key={index}>
-                        <button onClick={() => OnPay(row)}>pay</button>
-                      </TableCell>
-                    )
-                  }
+
                   if (col === 'Manage') {
                     return (
                       <TableCell key={index}>
@@ -128,6 +123,29 @@ const ReusableTable = ({
                             className="bg-red-500"
                             text="delete"
                           ></ReusableButton>
+                        </div>
+                      </TableCell>
+                    )
+                  }
+                  if (col === 'Payment') {
+                    return (
+                      <TableCell key={index}>
+                        <div className="gap-3 flex justify-center">
+                          <Button
+                            onClick={() => onPay(row)}
+                            variant="contained"
+                            color="success"
+                            disabled={row.status === 'cancelled' || row.status === "paid"}
+                          >
+                            Pay now
+                          </Button>
+                          <Button
+                            onClick={() => onCanceled(row)}
+                            variant="contained"
+                            disabled={row.status === 'cancelled'}
+                          >
+                            Cancel
+                          </Button>
                         </div>
                       </TableCell>
                     )

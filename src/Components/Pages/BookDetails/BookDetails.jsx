@@ -55,7 +55,13 @@ const BookDetails = () => {
       phone,
       status: 'pending',
       paymentStatus: 'unpaid',
-      bookId:_id
+      bookId: _id,
+      createAt: new Date().toISOString(),
+      image,
+      BookName,
+      author,
+      Category,
+      Price,
     }
     const res = await AxiosSecure.post(
       `${import.meta.env.VITE_serverBaseUrl}/placeOrder`,
