@@ -1,11 +1,39 @@
-import React from 'react';
+import React from 'react'
+import useAxiosSecure from '../../../Hooks/useAxiosSecure'
+import { useQuery } from '@tanstack/react-query'
+import ReusableTable from '../../../ReusableFunction/ReusableTable'
+import { UserHeading } from '../../../ReusableFunction/ReusableData/library'
 
 const AllUser = () => {
-    return (
-        <div>
-            <h1 className="">this is all user page</h1>
-        </div>
-    );
-};
+  const AxiosSecure = useAxiosSecure()
+  const { data: users = [],refetch } = useQuery({
+    queryKey: ['All user'],
+    queryFn: async () => {
+      const res = await AxiosSecure('/allUser')
+      return res.data
+    },
+  })
+  const handelMakeAdmin = async (row) => {
+      await AxiosSecure.patch(`/make-Admin/${row._id}`)
+      refetch()
+  }
+    const handelMakeLibrarian = async (row) => {
+        await AxiosSecure.patch(`/make-librarian/${row._id}`)
+        refetch()
 
-export default AllUser;
+  }
+
+  return (
+    <div>
+      <ReusableTable
+        MakeAdmin={handelMakeAdmin}
+        MakeLibrarian={handelMakeLibrarian}
+        heading={UserHeading}
+        tableData={users}
+
+      ></ReusableTable>
+    </div>
+  )
+}
+
+export default AllUser

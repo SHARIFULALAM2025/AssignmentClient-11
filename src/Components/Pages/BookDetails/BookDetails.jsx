@@ -36,7 +36,7 @@ const BookDetails = () => {
   })
   console.log(bookData)
 
-  const { image, BookName, author, Category, Price, createAt } = bookData
+  const { _id,image, BookName, author, Category, Price, createAt } = bookData
 
   /* modal */
   const [open, setOpen] = React.useState(false)
@@ -55,6 +55,7 @@ const BookDetails = () => {
       phone,
       status: 'pending',
       paymentStatus: 'unpaid',
+      bookId:_id
     }
     const res = await AxiosSecure.post(
       `${import.meta.env.VITE_serverBaseUrl}/placeOrder`,

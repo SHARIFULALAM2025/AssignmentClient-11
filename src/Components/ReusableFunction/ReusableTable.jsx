@@ -8,13 +8,18 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { FaEdit } from 'react-icons/fa'
 import Button from '@mui/material/Button'
+import ReusableButton from './ReusableButton'
 
 const ReusableTable = ({
   heading = [],
   tableData = [],
-refetch=()=>{},
+  refetch = () => {},
   OnPay = () => {},
   OnEdit = () => {},
+  MakeAdmin = () => {},
+  MakeLibrarian = () => {},
+  onManage = () => {},
+  onDelete = () => {},
 }) => {
   return (
     <div>
@@ -67,12 +72,10 @@ refetch=()=>{},
                         className="space-x-6"
                       >
                         <Button
-                                onClick={() => {
-                                    OnEdit(row)
-                                    refetch()
-                                }
-
-                          }
+                          onClick={() => {
+                            OnEdit(row)
+                            refetch()
+                          }}
                           variant="contained"
                           endIcon={<FaEdit />}
                         >
@@ -81,10 +84,51 @@ refetch=()=>{},
                       </TableCell>
                     )
                   }
+                  if (col === 'AdminAction') {
+                    return (
+                      <TableCell align="center" key={index}>
+                        <div className="space-x-3">
+                          {' '}
+                          <ReusableButton
+                            onClick={() => {
+                              MakeLibrarian(row)
+                            }}
+                            text="Make Librarian"
+                            className="bg-purple-600 text-white"
+                          ></ReusableButton>
+                          <ReusableButton
+                            onClick={() => {
+                              MakeAdmin(row)
+                            }}
+                            text="Make Admin"
+                            className="bg-green-500"
+                          ></ReusableButton>
+                        </div>
+                      </TableCell>
+                    )
+                  }
                   if (col === 'Pay') {
                     return (
                       <TableCell key={index}>
                         <button onClick={() => OnPay(row)}>pay</button>
+                      </TableCell>
+                    )
+                  }
+                  if (col === 'Manage') {
+                    return (
+                      <TableCell key={index}>
+                        <div className="space-x-3 flex justify-center">
+                          <ReusableButton
+                            onClick={() => onManage(row)}
+                            className="bg-blue-800 text-white"
+                            text="Category"
+                          ></ReusableButton>
+                          <ReusableButton
+                            onClick={() => onDelete(row)}
+                            className="bg-red-500"
+                            text="delete"
+                          ></ReusableButton>
+                        </div>
                       </TableCell>
                     )
                   }
