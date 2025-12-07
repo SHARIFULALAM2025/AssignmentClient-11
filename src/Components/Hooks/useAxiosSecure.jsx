@@ -1,0 +1,50 @@
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useContext } from 'react'
+import { AuthContext } from '../Authentication/Auth/AuthContext/AuthContext'
+import { useNavigate } from 'react-router'
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_serverBaseUrl,
+  withCredentials: true,
+})
+const useAxiosSecure = () => {
+  const { user, LogOut, loading } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!loading && user?.accessToken) {
+      // Add request interceptor
+      const requestInterceptor = axiosInstance.interceptors.request.use(
+        (config) => {
+          config.headers.Authorization = `Bearer ${user.accessToken}`
+          return config
+        }
+      )
+
+      // Add response interceptor
+      const responseInterceptor = axiosInstance.interceptors.response.use(
+        (res) => res,
+        (err) => {
+          if (err?.response?.status === 401 || err?.response?.status === 403) {
+            LogOut()
+              .then(() => {
+                console.log('Logged out successfully.')
+              })
+              .catch(console.error)
+            navigate('/login')
+          }
+          return Promise.reject(err)
+        }
+      )
+
+      // Cleanup to prevent multiple interceptors on re-renders
+      return () => {
+        axiosInstance.interceptors.request.eject(requestInterceptor)
+        axiosInstance.interceptors.response.eject(responseInterceptor)
+      }
+    }
+  }, [user?.accessToken, LogOut, loading, navigate])
+  return axiosInstance
+}
+
+export default useAxiosSecure

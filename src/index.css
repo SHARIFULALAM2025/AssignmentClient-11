@@ -1,0 +1,9 @@
+/*-------------tailwind css initialize--------*/
+@import "tailwindcss";
+/*-------------dark mode--------*/
+@custom-variant dark (&:where(.dark *));
+html, body,
+#root{
+  height:100%;
+}
+/*------------- --------*/
