@@ -9,6 +9,10 @@ import TableRow from '@mui/material/TableRow'
 import { FaEdit } from 'react-icons/fa'
 import Button from '@mui/material/Button'
 import ReusableButton from './ReusableButton'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
 
 const ReusableTable = ({
   heading = [],
@@ -21,6 +25,8 @@ const ReusableTable = ({
   onManage = () => {},
   onDelete = () => {},
   onCanceled = () => {},
+  cancelOrder = () => {},
+  handleChange,
 }) => {
   return (
     <div>
@@ -135,7 +141,10 @@ const ReusableTable = ({
                             onClick={() => onPay(row)}
                             variant="contained"
                             color="success"
-                            disabled={row.status === 'cancelled' || row.status === "paid"}
+                            disabled={
+                              row.status === 'cancelled' ||
+                              row.paymentStatus === 'paid'
+                            }
                           >
                             Pay now
                           </Button>
@@ -150,7 +159,46 @@ const ReusableTable = ({
                       </TableCell>
                     )
                   }
-
+                  //
+                  if (col === 'selectStatus') {
+                    return (
+                      <TableCell key={index}>
+                        <div className="">
+                          <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">
+                              Status
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              value={row.status}
+                              label="Status"
+                              onChange={(e) =>
+                                handleChange(row, e.target.value)
+                              }
+                            >
+                              <MenuItem value="pending">pending</MenuItem>
+                              <MenuItem value="shipped">shipped</MenuItem>
+                              <MenuItem value="delivered">delivered</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </div>
+                      </TableCell>
+                    )
+                  }
+                  if (col === 'orderCancel') {
+                    return (
+                      <TableCell key={index}>
+                        <div className="space-x-3 flex justify-center">
+                          <ReusableButton
+                            onClick={() => cancelOrder(row)}
+                            className="bg-blue-800 text-white"
+                            text="Cancel"
+                          ></ReusableButton>
+                        </div>
+                      </TableCell>
+                    )
+                  }
                   return (
                     <TableCell align="center" key={index}>
                       {row[col] || ''}

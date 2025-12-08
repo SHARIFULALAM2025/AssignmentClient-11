@@ -30,6 +30,8 @@ import AllUser from '../LayoutPage/DashboardLayout/DashboardPage/AllUser'
 
 import EditBook from '../LayoutPage/DashboardLayout/DashboardPage/EditBook/EditBook'
 import BookDetails from '../Pages/BookDetails/BookDetails'
+import PaymentSuccess from '../Pages/Payment/PaymentSuccess'
+
 
 const router = createBrowserRouter([
   {
@@ -61,6 +63,10 @@ const router = createBrowserRouter([
         path: '/BookDetails/:id',
         Component: BookDetails,
       },
+      {
+        path: "/payment",
+        Component:PaymentSuccess
+      }
     ],
   },
   {
@@ -117,6 +123,7 @@ const router = createBrowserRouter([
         path: '/dashboard/editBook',
         Component: EditBook,
       },
+
     ],
   },
 ])
