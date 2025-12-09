@@ -3,7 +3,7 @@ import ReusableCard from '../../ReusableFunction/ReusableCard'
 import { Link, useNavigate } from 'react-router'
 
 const Book = ({ item }) => {
-  const { image, BookName, Category, author } = item
+  const { image, BookName, Category, author,Price } = item
   const navigate = useNavigate()
   const handelDetails = (id) => {
     navigate(`/BookDetails/${id}`)
@@ -15,7 +15,7 @@ const Book = ({ item }) => {
         imageSrc={image}
         imgClass="object-cover w-full h-[400px]"
         title={BookName}
-        description={author}
+        description={Price}
         TitleClassName=""
         className="border p-2"
       ></ReusableCard>
