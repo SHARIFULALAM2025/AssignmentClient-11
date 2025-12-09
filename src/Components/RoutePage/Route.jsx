@@ -31,6 +31,7 @@ import AllUser from '../LayoutPage/DashboardLayout/DashboardPage/AllUser'
 import EditBook from '../LayoutPage/DashboardLayout/DashboardPage/EditBook/EditBook'
 import BookDetails from '../Pages/BookDetails/BookDetails'
 import PaymentSuccess from '../Pages/Payment/PaymentSuccess'
+import MyWishlist from '../LayoutPage/DashboardLayout/DashboardPage/MyWishlist'
 
 
 const router = createBrowserRouter([
@@ -90,6 +91,11 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/invoice',
         Component: Invoice,
+      },
+      {
+        path: '/dashboard/Wishlist',
+        Component:MyWishlist
+
       },
       {
         path: '/dashboard/AddBook',

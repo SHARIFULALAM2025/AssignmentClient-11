@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router'
 import useAxiosSecure from '../../Hooks/useAxiosSecure'
 import Container from '../../Container/Container'
@@ -11,6 +11,9 @@ import Box from '@mui/material/Box'
 import { AuthContext } from '../../Authentication/Auth/AuthContext/AuthContext'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import Rating from '@mui/material/Rating'
 
 const style = {
   position: 'absolute',
@@ -24,10 +27,12 @@ const style = {
   p: 4,
 }
 const BookDetails = () => {
+  const [value, setValue] = React.useState(0)
+  const [text, setText] = useState("")
   const { user } = useContext(AuthContext)
   const AxiosSecure = useAxiosSecure()
   const { id } = useParams()
-  const { data: bookData = {} } = useQuery({
+  const { data: bookData = {}, refetch } = useQuery({
     queryKey: ['single book', id],
     queryFn: async () => {
       const res = await AxiosSecure(`/book/${id}`)
@@ -36,7 +41,7 @@ const BookDetails = () => {
   })
   console.log(bookData)
 
-  const { _id,image, BookName, author, Category, Price, createAt } = bookData
+  const { _id, image, BookName, author, Category, Price, createAt } = bookData
 
   /* modal */
   const [open, setOpen] = React.useState(false)
@@ -72,7 +77,53 @@ const BookDetails = () => {
       handleClose()
     }
   }
+  // book Wishlist information
 
+  const bookWishlist = {
+    image,
+    BookName,
+    author,
+    Category,
+    Price,
+    bookId: _id,
+    name: user?.displayName,
+    email: user?.email,
+  }
+  const handelWishlist = async () => {
+    const res = await AxiosSecure.post('/wishlist', bookWishlist)
+
+    if (res.data.insertedId) {
+      toast.success('wishlist added')
+    }
+  }
+  const handelReview = async (e) => {
+    e.preventDefault()
+    const reviewInfo = {
+      value,
+      text,
+      bookId: _id,
+      createAt: new Date().toISOString(),
+      image,
+      BookName,
+      author,
+      email: user?.email,
+    }
+    const res = await AxiosSecure.post('/review', reviewInfo)
+    if (res.data.insertedId) {
+      toast.success('review successfully')
+      refetch()
+      ratingRefresh()
+      setValue(0)
+      setText("")
+    }
+  }
+  const { data: rating = [],refetch:ratingRefresh } = useQuery({
+    queryKey: ['rating', id],
+    queryFn: async () => {
+      const res = await AxiosSecure(`/review/${id}`)
+      return res.data
+    },
+  })
   return (
     <div>
       <Container>
@@ -86,10 +137,15 @@ const BookDetails = () => {
             <ReusableHeading text={Category}></ReusableHeading>
             <ReusableHeading text={Price}></ReusableHeading>
             <ReusableText text={createAt}></ReusableText>
-            <ReusableButton
-              onClick={handleOpen}
-              text="Order Now"
-            ></ReusableButton>
+            <div className="flex gap-3">
+              <ReusableButton
+                onClick={handleOpen}
+                text="Order Now"
+              ></ReusableButton>
+              <Button onClick={handelWishlist} variant="contained">
+                Add to Wishlist
+              </Button>
+            </div>
             {/* modal */}
             <div className="">
               <Modal
@@ -144,6 +200,42 @@ const BookDetails = () => {
               </Modal>
             </div>
           </div>
+        </div>
+        <div className="grid place-content-center items-center">
+          <form onSubmit={handelReview} action="">
+            <Box sx={{ '& > legend': { mt: 2 } }}>
+              <Typography component="legend">Give your review</Typography>
+              <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue)
+                }}
+              />
+              <br></br>
+              <label htmlFor="">comment:</label>
+              <br></br>
+              <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                className="w-full border"
+                placeholder="enter your comment"
+              ></textarea>
+            </Box>
+            <button type="submit" className="px-2 py-1 bg-amber-200">
+              submit review
+            </button>
+          </form>
+        </div>
+        <div className="grid place-content-center items-center">
+          <h1 className="">customer review</h1>
+          {rating.length === 0 && <p>no review yet</p>}
+          {rating.map((item) => (
+            <div key={item._id}>
+              <Rating value={item.value} readOnly></Rating>
+              <p className="">{ item.text}</p>
+            </div>
+          ))}
         </div>
       </Container>
     </div>
