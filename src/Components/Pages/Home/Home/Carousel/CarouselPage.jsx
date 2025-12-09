@@ -49,22 +49,22 @@ const CarouselPage = () => {
                 />
               </figure>
               <div className="absolute inset-0  flex flex-col justify-center items-center text-white text-center px-5 ">
-                <h1 className="text-3xl font-bold text-green-600">
+                <h1 className="text-2xl font-bold text-red-600">
                   {item.title}
                 </h1>
-                <p className="text-2xl font-bold text-green-600">{item.des}</p>
+                <p className="text-xs font-medium text-red-600">{item.des}</p>
               </div>
             </div>
           ))}
         </div>
         <button
-          className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-green-500 text-black p-2 rounded-full"
+          className="absolute left-8 top-1/2 z-10 -translate-y-1/2 bg-white/70 hover:bg-green-500 text-black p-2 rounded-full"
           onClick={handelPrev}
         >
           <IoIosArrowBack size={24}></IoIosArrowBack>
         </button>
         <button
-          className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-green-500 text-black p-2 rounded-full"
+          className="absolute right-8 top-1/2 z-10 -translate-y-1/2 bg-white/70 hover:bg-green-500 text-black p-2 rounded-full"
           onClick={handelNext}
         >
           <IoIosArrowForward size={24}></IoIosArrowForward>
