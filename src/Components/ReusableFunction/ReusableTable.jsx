@@ -134,6 +134,12 @@ const ReusableTable = ({
                     )
                   }
                   if (col === 'Payment') {
+                    if (
+                      row.paymentStatus === 'paid' ||
+                      row.status === 'cancelled'
+                    ) {
+                      return <TableCell key={index}></TableCell>
+                    }
                     return (
                       <TableCell key={index}>
                         <div className="gap-3 flex justify-center">
@@ -141,17 +147,12 @@ const ReusableTable = ({
                             onClick={() => onPay(row)}
                             variant="contained"
                             color="success"
-                            disabled={
-                              row.status === 'cancelled' ||
-                              row.paymentStatus === 'paid'
-                            }
                           >
                             Pay now
                           </Button>
                           <Button
                             onClick={() => onCanceled(row)}
                             variant="contained"
-                            disabled={row.status === 'cancelled'}
                           >
                             Cancel
                           </Button>
