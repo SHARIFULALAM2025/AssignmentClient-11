@@ -5,13 +5,15 @@ import Choose from './Choose/Choose';
 import Feedback from './Customer/Feedback';
 import Service from './Service/Service';
 import Container from '../../../Container/Container';
+import Coverage from './Coverage/Coverage';
 
 const Home = () => {
   return (
-    <div>
+    <div >
       <Container>
         <CarouselPage></CarouselPage>
         <NewBook></NewBook>
+        <Coverage></Coverage>
         <Service></Service>
         <Choose></Choose>
         <Feedback></Feedback>

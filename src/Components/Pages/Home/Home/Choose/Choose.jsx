@@ -19,18 +19,19 @@ const Choose = () => {
     <div>
       <div className="md:mt-24">
         <div className="text-center space-y-3 md:mb-12">
-          <h1 className="text-4xl font-bold">
+          <h1 className="text-4xl font-bold dark:text-white">
             why Choose Our Book Courier services ?
           </h1>
-          <p className="text-xs font-medium">
+          <p className="text-xs font-medium dark:text-white">
             Enhance posture, mobility, and well-being effortlessly with Posture
             Pro. Achieve proper alignment, reduce pain, and strengthen your body
             with ease!
           </p>
         </div>
         {AllQuestion.map((item) => (
-          <Accordion key={item._id}>
+          <Accordion key={item._id} className=''>
             <AccordionSummary
+              className=''
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"

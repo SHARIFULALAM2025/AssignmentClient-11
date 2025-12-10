@@ -30,13 +30,16 @@ const Feedback = () => {
             />
           </div>
           <div className="">
-            <h1 className="text-[#2F80ED] font-bold">TESTIMONIAL</h1>
-            <h2 className="text-[#11111D] font-bold">Our Awesome Clients</h2>
+            <h1 className="text-[#2F80ED] dark:text-white dark:bg-black font-bold">
+              TESTIMONIAL
+            </h1>
+            <h2 className="text-[#11111D] dark:text-white dark:bg-black font-bold">
+              Our Awesome Clients
+            </h2>
           </div>
         </div>
       </div>
       <Carousel
-
         showArrows={true}
         showThumbs={false}
         infiniteLoop={true}
@@ -44,9 +47,14 @@ const Feedback = () => {
         interval={2000}
       >
         {feedBack.map((item, index) => (
-          <div key={index} className="bg-[#FFFFFF] p-8 ">
-            <h1 className="text-left font-bold text-[#2F80ED]">{item.title}</h1>
-            <p className="text-[#464558]">{item.des}</p>
+          <div
+            key={index}
+            className="bg-[#FFFFFF] p-8 dark:text-white dark:bg-black "
+          >
+            <h1 className="text-left font-bold dark:text-white  text-[#2F80ED]">
+              {item.title}
+            </h1>
+            <p className="text-[#464558] dark:text-white ">{item.des}</p>
             <div className="flex justify-between">
               <div className="">
                 <Box>
@@ -63,8 +71,10 @@ const Feedback = () => {
               </div>
               <div className="flex gap-2">
                 <div className="">
-                  <h1 className="text-[#11111D] font-bold">{item.name}</h1>
-                  <p className="text-[#464558]">{item.deg}</p>
+                  <h1 className="text-[#11111D] dark:text-white  font-bold">
+                    {item.name}
+                  </h1>
+                  <p className="text-[#464558] dark:text-white ">{item.deg}</p>
                 </div>
                 <div className="">
                   <Avatar src={item.image} />
