@@ -30,10 +30,10 @@ const Feedback = () => {
             />
           </div>
           <div className="">
-            <h1 className="text-[#2F80ED] dark:text-white dark:bg-black font-bold">
+            <h1 className="text-[#2F80ED] dark:text-white md:text-xl text-base font-semibold dark:bg-black md:font-bold">
               TESTIMONIAL
             </h1>
-            <h2 className="text-[#11111D] dark:text-white dark:bg-black font-bold">
+            <h2 className="text-[#11111D] md:text-xl text-base font-semibold dark:text-white dark:bg-black md:font-bold">
               Our Awesome Clients
             </h2>
           </div>
@@ -54,7 +54,9 @@ const Feedback = () => {
             <h1 className="text-left font-bold dark:text-white  text-[#2F80ED]">
               {item.title}
             </h1>
-            <p className="text-[#464558] dark:text-white ">{item.des}</p>
+            <p className="text-[#464558] dark:text-white md:text-base text-xs ">
+              {item.des}
+            </p>
             <div className="flex justify-between">
               <div className="">
                 <Box>
@@ -70,11 +72,13 @@ const Feedback = () => {
                 </Box>
               </div>
               <div className="flex gap-2">
-                <div className="">
-                  <h1 className="text-[#11111D] dark:text-white  font-bold">
+                <div className="mt-2">
+                  <h1 className="text-[#11111D] dark:text-white md:text-xl text-xs font-bold">
                     {item.name}
                   </h1>
-                  <p className="text-[#464558] dark:text-white ">{item.deg}</p>
+                  <p className="text-[#464558] dark:text-white md:text-xl text-xs  ">
+                    {item.deg}
+                  </p>
                 </div>
                 <div className="">
                   <Avatar src={item.image} />

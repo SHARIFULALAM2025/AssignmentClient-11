@@ -19,7 +19,7 @@ const Choose = () => {
     <div>
       <div className="md:mt-24">
         <div className="text-center space-y-3 md:mb-12">
-          <h1 className="text-4xl font-bold dark:text-white">
+          <h1 className="md:text-4xl text-xl font-semibold md:font-bold dark:text-white">
             why Choose Our Book Courier services ?
           </h1>
           <p className="text-xs font-medium dark:text-white">

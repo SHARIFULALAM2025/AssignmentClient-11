@@ -16,7 +16,7 @@ const Coverage = () => {
   const position = [23.685, 90.3563]
   return (
     <div>
-      <h1 className="text-2xl font-bold text-center dark:text-white">Our Coverage Area</h1>
+      <h1 className="md:text-2xl font-semibold text-xl md:font-bold text-center dark:text-white">Our Coverage Area</h1>
       <div className="w-full h-[800px]">
         {center.length > 0 && (
           <MapContainer
