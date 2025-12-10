@@ -9,7 +9,7 @@ const Service = () => {
           <h1 className="font-bold text-[#16A7FC]">SERVICES</h1>
           <p className=" font-extrabold">Our services for you</p>
         </div>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-3">
           <div className="p-5 bg-[#FFFFFF]">
             <Avatar
               className="mx-auto"

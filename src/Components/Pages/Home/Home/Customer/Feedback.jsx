@@ -36,11 +36,12 @@ const Feedback = () => {
         </div>
       </div>
       <Carousel
+
         showArrows={true}
         showThumbs={false}
         infiniteLoop={true}
         autoPlay={true}
-        interval={2500}
+        interval={2000}
       >
         {feedBack.map((item, index) => (
           <div key={index} className="bg-[#FFFFFF] p-8 ">
