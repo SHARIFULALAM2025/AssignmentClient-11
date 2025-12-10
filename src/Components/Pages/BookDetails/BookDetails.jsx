@@ -39,7 +39,7 @@ const BookDetails = () => {
       return res.data
     },
   })
-  console.log(bookData)
+  // console.log(bookData)
 
   const { _id, image, BookName, author, Category, Price, createAt } = bookData
 
@@ -51,7 +51,7 @@ const BookDetails = () => {
   const { register, handleSubmit } = useForm()
   const HandelModalData = async (data) => {
     const { name, address, email, phone } = data
-    console.log(data)
+    // console.log(data)
 
     const placeOrderInfo = {
       name,

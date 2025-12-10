@@ -24,7 +24,7 @@ const Login = () => {
   const {register,handleSubmit,reset,formState:{errors}}=useForm()
   const handelLogin = async(data) => {
     const { email,password } = data
-    console.log(data);
+    // console.log(data);
     try {
       await loginInUser(email, password);
       toast.success("Login Successfully!")

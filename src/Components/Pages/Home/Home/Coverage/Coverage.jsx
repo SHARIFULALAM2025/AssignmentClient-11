@@ -3,7 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 const Coverage = () => {
   const [center, setCenter] = useState([])
-  console.log(center)
+  // console.log(center)
    const myRef = useRef(null)
 
   useEffect(() => {

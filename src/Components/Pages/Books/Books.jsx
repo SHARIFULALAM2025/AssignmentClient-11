@@ -14,7 +14,7 @@ const Books = () => {
   const AxiosSecure = useAxiosSecure()
   const [searchText, setSearchText] = useState('')
   const [filterBook, setFilterBook] = useState([])
-  console.log(filterBook)
+  // console.log(filterBook)
 
   const { data: book = [] } = useQuery({
     queryKey: ['all Book'],

@@ -15,7 +15,7 @@ const Order = () => {
       return res.data
     },
   })
-  console.log(orders)
+  // console.log(orders)
 
   const handleChange = async (row, newStatus) => {
     const res = await AxiosSecure.patch(`/orders/status/${row._id}`, {

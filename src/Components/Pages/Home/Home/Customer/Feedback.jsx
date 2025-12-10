@@ -16,7 +16,7 @@ const Feedback = () => {
       return result.data
     },
   })
-  console.log(feedBack)
+  // console.log(feedBack)
 
   return (
     <div className="mt-6">

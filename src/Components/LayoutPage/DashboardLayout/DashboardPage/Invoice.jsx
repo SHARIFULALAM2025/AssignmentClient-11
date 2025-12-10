@@ -16,7 +16,7 @@ const Invoice = () => {
         return res.data
     },
   })
-    console.log(invoice)
+    // console.log(invoice)
 
     return (
       <div>

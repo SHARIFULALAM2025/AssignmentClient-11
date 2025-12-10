@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
   const [theme, setTheme] = useState('light')
   /* set user */
   const [user, setUser] = useState(null)
-  console.log(user);
+  // console.log(user);
 
   /* set loading */
   const [loading, setLoading] = useState(true)
