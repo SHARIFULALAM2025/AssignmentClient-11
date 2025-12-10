@@ -69,7 +69,7 @@ const Profile = () => {
       <div className="bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5">
         <img
           alt="cover photo"
-          src="https://i.ibb.co.com/pNNnrgm/wade-meng-Lg-Cj9qcrfh-I-unsplash.jpg"
+          src="https://i.ibb.co.com/6ckdVQyp/inaki-del-olmo-NIJu-EQw0-RKg-unsplash.jpg"
           className="w-full mb-4 rounded-t-lg h-56"
         />
         <div className="flex flex-col items-center justify-center p-4 -mt-16">
@@ -118,7 +118,7 @@ const Profile = () => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <form onSubmit={handleSubmit(handelProfile)} className='space-y-2'>
+            <form onSubmit={handleSubmit(handelProfile)} className="space-y-2">
               <label htmlFor="">Name:</label>
               <br></br>
               <input

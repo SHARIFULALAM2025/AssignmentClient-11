@@ -4,15 +4,18 @@ import NewBook from './NewBook/NewBook';
 import Choose from './Choose/Choose';
 import Feedback from './Customer/Feedback';
 import Service from './Service/Service';
+import Container from '../../../Container/Container';
 
 const Home = () => {
   return (
     <div>
-      <CarouselPage></CarouselPage>
-      <NewBook></NewBook>
-      <Service></Service>
-      <Choose></Choose>
-      <Feedback></Feedback>
+      <Container>
+        <CarouselPage></CarouselPage>
+        <NewBook></NewBook>
+        <Service></Service>
+        <Choose></Choose>
+        <Feedback></Feedback>
+      </Container>
     </div>
   )
 };
