@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ReusableHeading = ({ text, className = '' }) => {
-  return <h1 className={`text-2xl font-bold text-red-700 ${className}`}>{text}</h1>
+  return <h1 className={`md:text-2xl md:font-bold text-black ${className}`}>{text}</h1>
 }
 
 export default ReusableHeading

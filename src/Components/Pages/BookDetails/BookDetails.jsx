@@ -129,17 +129,32 @@ const BookDetails = () => {
       <Container>
         <div className="grid md:grid-cols-2 items-center gap-5 grid-cols-1">
           <div className="flex-1">
-            <img src={image} alt="" className="w-full" />
+            <img src={image} alt="" className="w-full h-[550px] rounded-xl" />
           </div>
           <div className="flex-1">
-            <ReusableHeading  text={BookName}></ReusableHeading>
-            <ReusableHeading text={author}></ReusableHeading>
-            <ReusableHeading text={Category}></ReusableHeading>
-            <ReusableHeading text={Price}></ReusableHeading>
-            <ReusableText text={createAt}></ReusableText>
+            <ReusableHeading
+              text={BookName}
+              className={`text-xl dark:text-white`}
+            ></ReusableHeading>
+            <ReusableHeading
+              className="text-xl dark:text-white"
+              text={author}
+            ></ReusableHeading>
+            <ReusableHeading
+              className="text-xl dark:text-white"
+              text={Category}
+            ></ReusableHeading>
+            <ReusableHeading
+              className="text-xl dark:text-white"
+              text={Price}
+            ></ReusableHeading>
+            <ReusableText
+              className="text-xl dark:text-white"
+              text={createAt}
+            ></ReusableText>
             <div className="flex gap-3">
               <ReusableButton
-                className='border rounded text-white font-bold'
+                className="border rounded text-white font-bold"
                 onClick={handleOpen}
                 text="Order Now"
               ></ReusableButton>
@@ -205,8 +220,14 @@ const BookDetails = () => {
         <div className="grid place-content-center items-center">
           <form onSubmit={handelReview} action="">
             <Box sx={{ '& > legend': { mt: 2 } }}>
-              <Typography component="legend">Give your review</Typography>
+              <Typography
+                component="legend"
+                sx={{ '.dark &': { color: 'white' } }}
+              >
+                Give your review
+              </Typography>
               <Rating
+                sx={{ '.dark &': { color: 'white' } }}
                 name="simple-controlled"
                 value={value}
                 onChange={(event, newValue) => {
@@ -214,27 +235,39 @@ const BookDetails = () => {
                 }}
               />
               <br></br>
-              <label htmlFor="">comment:</label>
+              <label
+                htmlFor=""
+                className="md:text-xl text-xs font-bold dark:text-white"
+              >
+                comment:
+              </label>
               <br></br>
               <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                className="w-full border"
+                className="w-full border md:text-base text-xs font-semibold dark:bg-white"
                 placeholder="enter your comment"
               ></textarea>
             </Box>
-            <button type="submit" className="px-2 py-1 bg-amber-200">
+            <button
+              type="submit"
+              className="px-2 py-1 border rounded bg-amber-200"
+            >
               submit review
             </button>
           </form>
         </div>
         <div className="grid place-content-center items-center">
-          <h1 className="">customer review</h1>
-          {rating.length === 0 && <p>no review yet</p>}
+          <h1 className="md:text-xl text-xs font-bold dark:text-white">
+            customer review
+          </h1>
+          {rating.length === 0 && (
+            <p className="dark:text-white">no review yet</p>
+          )}
           {rating.map((item) => (
             <div key={item._id}>
               <Rating value={item.value} readOnly></Rating>
-              <p className="">{ item.text}</p>
+              <p className="">{item.text}</p>
             </div>
           ))}
         </div>
