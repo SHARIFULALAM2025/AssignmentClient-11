@@ -21,7 +21,7 @@ const Login = () => {
   const navigate = useNavigate()
   /* login data collect */
   const { loginInUser, loading } = useContext(AuthContext)
-  const {register,handleSubmit,reset}=useForm()
+  const {register,handleSubmit,reset,formState:{errors}}=useForm()
   const handelLogin = async(data) => {
     const { email,password } = data
     console.log(data);
@@ -77,20 +77,38 @@ const Login = () => {
                 <div className="">
                   <label className="text-xs font-bold">Email:</label>
                   <input
-                    {...register("email")}
+                    {...register('email', { required: true })}
                     type="email"
                     className="bg-[#FEC6A559] w-full rounded-xl p-2 outline-none placeholder:text-black placeholder:text-xs placeholder:font-bold"
                     placeholder="Enter your Email"
                   />
+                  {errors.email?.type === 'required' && (
+                    <p className="text-red-500"> email is required</p>
+                  )}
                 </div>
                 <div className="relative">
                   <label className="text-xs font-bold">Password:</label>
                   <input
-                    {...register("password")}
+                    {...register('password', {
+                      required: true,
+                      minLength: 6,
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                    })}
                     type={toggle ? 'text' : 'password'}
                     className=" bg-[#FEC6A559] w-full rounded-xl p-2 outline-none placeholder:text-black placeholder:text-xs placeholder:font-bold"
                     placeholder="Enter your password"
                   />
+                  {errors.password?.type === 'required' && (
+                    <p className="text-red-500"> password is required</p>
+                  )}
+                  {errors.password?.type === 'minLength' && (
+                    <p className="text-red-500"> password must be 6 char </p>
+                  )}
+                  {errors.password?.type === 'pattern' && (
+                    <p className="text-red-600">
+                      password must have one uppercase one lowercase one number
+                    </p>
+                  )}
                   <div className="absolute top-7 right-0 mr-6  ">
                     {toggle ? (
                       <Tooltip title="Hide password" arrow>
@@ -109,10 +127,7 @@ const Login = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <Link
-
-                    className="underline underline-offset-4 text-red-500 text-base md:text-xl font-bold cursor-pointer"
-                  >
+                  <Link className="underline underline-offset-4 text-red-500 text-base md:text-xl font-bold cursor-pointer">
                     Forgat Password ?
                   </Link>
                 </div>
