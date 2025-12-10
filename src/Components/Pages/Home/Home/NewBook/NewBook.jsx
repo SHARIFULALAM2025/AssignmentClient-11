@@ -21,13 +21,14 @@ const NewBook = () => {
           <div key={index}>
             <ReusableCard
               buttonText={`Price:${item.Price}`}
+              TitleClassName="dark:text-white"
               title={`Name :${item.BookName}`}
               description={`Author:${item.author}`}
-              desClassName="text-xs"
-              className="border p-1 shadow-xl rounded"
+              desClassName="text-xs dark:text-white"
+              className="border md:p-1 shadow-xl rounded"
               imageSrc={item.image}
               imgClass="w-full bg-cover h-62 rounded "
-              buttonClassName="text-xs"
+              buttonClassName="text-xs dark:text-white"
             ></ReusableCard>
           </div>
         ))}

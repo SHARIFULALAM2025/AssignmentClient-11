@@ -13,13 +13,14 @@ const Book = ({ item }) => {
     <div onClick={() => handelDetails(item._id)}>
       <ReusableCard
         buttonText={`Price:${Price}`}
+        TitleClassName="dark:text-white"
         title={`Name :${BookName}`}
         description={`Author:${author}`}
-        desClassName="text-xs"
+        desClassName="text-xs dark:text-white"
         className="border p-1 shadow-xl rounded"
         imageSrc={image}
         imgClass="w-full bg-cover h-62 rounded "
-        buttonClassName="text-xs"
+        buttonClassName="text-xs dark:text-white"
       ></ReusableCard>
     </div>
   )

@@ -127,18 +127,19 @@ const BookDetails = () => {
   return (
     <div>
       <Container>
-        <div className="grid md:grid-cols-2 grid-cols-1">
+        <div className="grid md:grid-cols-2 items-center gap-5 grid-cols-1">
           <div className="flex-1">
-            <img src={image} alt="" className="" />
+            <img src={image} alt="" className="w-full" />
           </div>
           <div className="flex-1">
-            <ReusableHeading text={BookName}></ReusableHeading>
+            <ReusableHeading  text={BookName}></ReusableHeading>
             <ReusableHeading text={author}></ReusableHeading>
             <ReusableHeading text={Category}></ReusableHeading>
             <ReusableHeading text={Price}></ReusableHeading>
             <ReusableText text={createAt}></ReusableText>
             <div className="flex gap-3">
               <ReusableButton
+                className='border rounded text-white font-bold'
                 onClick={handleOpen}
                 text="Order Now"
               ></ReusableButton>

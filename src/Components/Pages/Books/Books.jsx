@@ -51,7 +51,7 @@ const Books = () => {
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="search book name"
             type="search"
-            className="py-1 px-2 outline-none border rounded"
+            className="py-1 px-2 dark:bg-white outline-none border rounded"
           />
 
           <button
@@ -61,11 +61,17 @@ const Books = () => {
             search
           </button>
         </div>
-        <div className="flex justify-end mb-2">
-          <FormControl sx={{width:"300px"}}>
-            <InputLabel id="demo-simple-select-label">Select price</InputLabel>
+        <div className="flex justify-end mb-2 ">
+          <FormControl sx={{ width: '300px' }}>
+            <InputLabel
+              sx={{ color: 'black', '.dark &': { color: 'white' } }}
+              id="demo-simple-select-label"
+            >
+              Select price
+            </InputLabel>
             <Select
-              className='w-1/2'
+              sx={{ '.dark & ': { backgroundColor: 'red' } }}
+              className="w-1/2 "
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={sortBook}
