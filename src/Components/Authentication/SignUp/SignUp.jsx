@@ -26,7 +26,7 @@ const SignUp = () => {
   }
   /* collect sign up form data using react hook form */
 
-  const { register, handleSubmit,reset } = useForm()
+  const { register, handleSubmit,reset,formState:{errors} } = useForm()
   const handelSignIn = async (data) => {
     const { name, email, password, image } = data
     const imageUrl = image[0]
@@ -87,10 +87,13 @@ const SignUp = () => {
                   <label className="text-xs font-bold">Name:</label>
                   <input
                     type="text"
-                    {...register('name')}
+                    {...register('name', { required: true })}
                     className="bg-[#FEC6A559] placeholder:text-black placeholder:text-xs placeholder:font-bold w-full rounded-xl p-2 outline-none"
                     placeholder="Enter your Name"
                   />
+                  {errors.name?.type === 'required' && (
+                    <p className="text-red-500"> name is required</p>
+                  )}
                 </div>
                 <div className="">
                   <label className="text-xs font-bold">
@@ -105,31 +108,55 @@ const SignUp = () => {
                       sx={{ backgroundColor: '#FEC6A559', width: '100%' }}
                     >
                       <input
-                        {...register('image')}
+                        {...register('image', { required: true })}
                         className="rounded-full text-black "
                         type="file"
                         onChange={(event) => console.log(event.target.files)}
                       />
+                      {errors.image?.type === 'required' && (
+                        <p className="text-red-500"> image is required</p>
+                      )}
                     </Button>
                   </Tooltip>
                 </div>
                 <div className="">
                   <label className="text-xs font-bold">Email:</label>
                   <input
-                    {...register('email')}
+                    {...register('email', { required: true })}
                     type="email"
                     className="bg-[#FEC6A559] w-full rounded-xl p-2 outline-none placeholder:text-black placeholder:text-xs placeholder:font-bold"
                     placeholder="Enter your Email"
                   />
+                  {errors.email?.type === 'required' && (
+                    <p className="text-red-500"> email is required</p>
+                  )}
                 </div>
                 <div className="relative">
                   <label className="text-xs font-bold">Password:</label>
                   <input
-                    {...register('password')}
+                    {...register('password', {
+                      required: true,
+                      minLength: 6,
+                      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                    })}
                     type={toggle ? 'text' : 'password'}
                     className="bg-[#FEC6A559] w-full rounded-xl p-2 outline-none placeholder:text-black placeholder:text-xs placeholder:font-bold"
                     placeholder="Enter your password"
                   />
+                  {errors.password?.type === 'required' && (
+                    <p className="text-red-500"> password is required</p>
+                  )}
+                  {errors.password?.type === 'minLength' && (
+                    <p className="text-red-500">
+                      {' '}
+                      password must be at least 6 char or longer
+                    </p>
+                  )}
+                  {errors.password?.type === 'pattern' && (
+                    <p className="text-red-600">
+                      password must have one uppercase one lowercase one number
+                    </p>
+                  )}
                   <div className="absolute right-0 top-7 mr-6">
                     {toggle ? (
                       <Tooltip title="Hide Password" arrow>
