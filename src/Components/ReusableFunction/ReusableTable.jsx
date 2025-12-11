@@ -101,14 +101,14 @@ const ReusableTable = ({
                               MakeLibrarian(row)
                             }}
                             text="Make Librarian"
-                            className="bg-purple-600 text-white"
+                            className="bg-purple-600 text-white border rounded"
                           ></ReusableButton>
                           <ReusableButton
                             onClick={() => {
                               MakeAdmin(row)
                             }}
                             text="Make Admin"
-                            className="bg-green-500"
+                            className="bg-green-500 border rounded"
                           ></ReusableButton>
                         </div>
                       </TableCell>

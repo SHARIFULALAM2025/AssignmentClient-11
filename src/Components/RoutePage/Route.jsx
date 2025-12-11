@@ -52,9 +52,10 @@ const router = createBrowserRouter([
         Component: BookDetails,
       },
       {
-        path: "/payment",
-        Component:PaymentSuccess
-      }
+        path: '/payment',
+        Component: PaymentSuccess,
+      },
+
     ],
   },
   {
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    Component: DashboardLayout,
+    element: <Private><DashboardLayout></DashboardLayout></Private>,
     children: [
       {
         path: '/dashboard/invoice',
@@ -81,28 +82,57 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/Wishlist',
-        Component:MyWishlist
-
+        Component: MyWishlist,
       },
       {
         path: '/dashboard/AddBook',
-        element: <Private><Librarian><AddBook></AddBook></Librarian></Private>,
+        element: (
+          <Private>
+            <Librarian>
+              <AddBook></AddBook>
+            </Librarian>
+          </Private>
+        ),
       },
       {
         path: '/dashboard/MyBooks',
-        element:<Private><Librarian><MyBooks></MyBooks></Librarian></Private>,
+        element: (
+          <Private>
+            <Librarian>
+              <MyBooks></MyBooks>
+            </Librarian>
+          </Private>
+        ),
       },
       {
         path: '/dashboard/Order',
-        element:<Private><Librarian><Order></Order></Librarian></Private>,
+        element: (
+          <Private>
+            <Librarian>
+              <Order></Order>
+            </Librarian>
+          </Private>
+        ),
       },
       {
         path: '/dashboard/AllUser',
-        element:<Private><Admin><AllUser></AllUser></Admin></Private> ,
+        element: (
+          <Private>
+            <Admin>
+              <AllUser></AllUser>
+            </Admin>
+          </Private>
+        ),
       },
       {
         path: '/dashboard/ManageBook',
-        element:<Private><Admin><ManageBook></ManageBook></Admin></Private>,
+        element: (
+          <Private>
+            <Admin>
+              <ManageBook></ManageBook>
+            </Admin>
+          </Private>
+        ),
       },
       {
         path: '/dashboard/MyOrder',
@@ -114,9 +144,14 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/editBook',
-        element: <Private><Librarian><EditBook></EditBook></Librarian></Private>,
+        element: (
+          <Private>
+            <Librarian>
+              <EditBook></EditBook>
+            </Librarian>
+          </Private>
+        ),
       },
-
     ],
   },
 ])
