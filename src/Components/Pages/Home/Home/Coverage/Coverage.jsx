@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import 'leaflet-defaulticon-compatibility'
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'
 const Coverage = () => {
   const [center, setCenter] = useState([])
   // console.log(center)
@@ -31,8 +33,8 @@ const Coverage = () => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {center.map((item) => (
-              <Marker position={[item.latitude, item.longitude]} key={item._id}>
+            {center.map((item,index) => (
+              <Marker position={[item.latitude, item.longitude]} key={index}>
                 <Popup>
                   <strong>{item.district}</strong>
                   <br></br>service area:
