@@ -20,6 +20,8 @@ import EditBook from '../LayoutPage/DashboardLayout/DashboardPage/EditBook/EditB
 import BookDetails from '../Pages/BookDetails/BookDetails'
 import PaymentSuccess from '../Pages/Payment/PaymentSuccess'
 import MyWishlist from '../LayoutPage/DashboardLayout/DashboardPage/MyWishlist'
+import Librarian from '../PrivatePage/Librarian'
+import Admin from '../PrivatePage/Admin'
 
 
 const router = createBrowserRouter([
@@ -84,23 +86,23 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/AddBook',
-        Component: AddBook,
+        element: <Private><Librarian><AddBook></AddBook></Librarian></Private>,
       },
       {
         path: '/dashboard/MyBooks',
-        Component: MyBooks,
+        element:<Private><Librarian><MyBooks></MyBooks></Librarian></Private>,
       },
       {
         path: '/dashboard/Order',
-        Component: Order,
+        element:<Private><Librarian><Order></Order></Librarian></Private>,
       },
       {
         path: '/dashboard/AllUser',
-        Component: AllUser,
+        element:<Private><Admin><AllUser></AllUser></Admin></Private> ,
       },
       {
         path: '/dashboard/ManageBook',
-        Component: ManageBook,
+        element:<Private><Admin><ManageBook></ManageBook></Admin></Private>,
       },
       {
         path: '/dashboard/MyOrder',
@@ -112,7 +114,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/editBook',
-        Component: EditBook,
+        element: <Private><Librarian><EditBook></EditBook></Librarian></Private>,
       },
 
     ],

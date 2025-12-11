@@ -25,11 +25,11 @@ const CarouselPage = () => {
     }
   }
   useEffect(() => {
-    fetch('http://localhost:5000/myCarousel').then(res => res.json())
-      .then(result => {
-      setNewProperty(result)
-    })
-
+    fetch('https://assignment-server-11-steel.vercel.app/myCarousel')
+      .then((res) => res.json())
+      .then((result) => {
+        setNewProperty(result)
+      })
   }, [])
   const navigate = useNavigate()
   const handelNavigate = () => {
@@ -84,6 +84,3 @@ const CarouselPage = () => {
 }
 
 export default CarouselPage
-
-
-
