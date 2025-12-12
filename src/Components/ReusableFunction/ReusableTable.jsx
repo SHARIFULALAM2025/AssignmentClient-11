@@ -121,12 +121,12 @@ const ReusableTable = ({
                         <div className="space-x-3 flex justify-center">
                           <ReusableButton
                             onClick={() => onManage(row)}
-                            className="bg-blue-800 text-white"
+                            className="bg-blue-800 text-white  border rounded"
                             text="Category"
                           ></ReusableButton>
                           <ReusableButton
                             onClick={() => onDelete(row)}
-                            className="bg-red-500"
+                            className="bg-red-500  border rounded"
                             text="delete"
                           ></ReusableButton>
                         </div>
@@ -193,7 +193,7 @@ const ReusableTable = ({
                         <div className="space-x-3 flex justify-center">
                           <ReusableButton
                             onClick={() => cancelOrder(row)}
-                            className="bg-blue-800 text-white"
+                            className="bg-blue-800 text-white  border rounded"
                             text="Cancel"
                           ></ReusableButton>
                         </div>

@@ -96,4 +96,9 @@ Fully mobile and desktop optimized
 3.Dotenv ---------->Environment Variables
 4.Cors ------------>Enable cross origin request
 5.Stripe ---------->payment integration
-### live link:https://assignment-11-7f7d0.web.app
+
+
+### live link: https://assignment-11-7f7d0.web.app
+
+
+
