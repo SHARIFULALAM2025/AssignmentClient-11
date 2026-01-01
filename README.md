@@ -1,5 +1,5 @@
 ### Project Name: BookCourier - Smart Book Delivery and Management System
-### purpose
+### project description
 BookCourier is a library delivery management system where a users can request book pickup or delivery from this near  libraries. a user can easily order a book and easily payment . it is A fast, modern and user-friendly web application for delivering books to the doorsteps of users in Bangladesh.
 This project provides an online library interface with book browsing, searching, sorting, user authentication, payment integration and complete delivery coverage mapping.
 
@@ -96,6 +96,45 @@ Fully mobile and desktop optimized
 3.Dotenv ---------->Environment Variables
 4.Cors ------------>Enable cross origin request
 5.Stripe ---------->payment integration
+📦 Dependencies Used
+react
+react-dom
+react-router
+firebase
+axios
+@tanstack/react-query
+react-hook-form
+react-leaflet
+leaflet-defaulticon-compatibility
+@mui/material
+@mui/icons-material
+@emotion/react
+@emotion/styled
+tailwindcss
+react-hot-toast
+sweetalert2
+react-icons
+react-spinners
+react-responsive-carousel
+🧑‍💻 How to Run the Project Locally
+### Clone the Repository
+https://github.com/SHARIFULALAM2025/AssignmentClient-11.git
+### Install Dependencies
+npm install
+### Environment Setup
+Create a .env file in the root directory and add:
+example:
+VITE_FIREBASE_API_KEY=your_key
+VITE_FIREBASE_AUTH_DOMAIN=your_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+### Run Development Server
+npm run dev
+
+### Build for Production
+npm run build
 
 
 ### live link: https://assignment-11-7f7d0.web.app
