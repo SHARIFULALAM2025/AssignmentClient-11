@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { AuthContext } from '../Auth/AuthContext/AuthContext'
 import toast from 'react-hot-toast'
 import Loading1 from '../../Loading/Loading1'
+import ReusableButton from '../../ReusableFunction/ReusableButton'
 const Login = () => {
   /* toggle button */
   const [toggle, setToggle] = useState(false)
@@ -21,22 +22,39 @@ const Login = () => {
   const navigate = useNavigate()
   /* login data collect */
   const { loginInUser, loading } = useContext(AuthContext)
-  const {register,handleSubmit,reset,formState:{errors}}=useForm()
-  const handelLogin = async(data) => {
-    const { email,password } = data
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+    setValue,
+    clearErrors
+  } = useForm()
+  const handelLogin = async (data) => {
+    const { email, password } = data
     // console.log(data);
     try {
-      await loginInUser(email, password);
-      toast.success("Login Successfully!")
+      await loginInUser(email, password)
+      toast.success('Login Successfully!')
       navigate('/')
       reset()
     } catch (error) {
-      const Message = error.message;
+      const Message = error.message
       toast.error(Message)
     }
-
-
   }
+
+  const handelDemoLogin = (role) => {
+    if (role === 'Admin') {
+      setValue('email','sharifullinkdin2025@gmail.com')
+      setValue('password', 'Abc123')
+    } else {
+      setValue('email', 'sharifullinkdin202@gmail.com')
+      setValue('password', 'Abc123')
+    }
+    clearErrors(['email', 'password'])
+  }
+
   if (loading) {
     return <Loading1></Loading1>
   }
@@ -146,6 +164,24 @@ const Login = () => {
                 <div className="border w-full border-t-2"></div>
               </div>
               <Social></Social>
+
+              <p className="text-center font-bold">Auto login</p>
+              <div className="flex justify-center items-center">
+                <div className="flex gap-3">
+                  <ReusableButton
+                    className="bg-[#FEC6A5] rounded-xl font-bold"
+                    onClick={() => handelDemoLogin('Admin')}
+                    text="Admin demo"
+                    variant="contained"
+                  ></ReusableButton>
+                  <ReusableButton
+                    className="bg-[#FEC6A5] rounded-xl font-bold"
+                    variant="contained"
+                    onClick={() => handelDemoLogin('user')}
+                    text="User demo"
+                  ></ReusableButton>
+                </div>
+              </div>
             </div>
           </div>
         </div>

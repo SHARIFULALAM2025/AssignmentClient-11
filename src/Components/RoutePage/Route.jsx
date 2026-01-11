@@ -22,6 +22,14 @@ import PaymentSuccess from '../Pages/Payment/PaymentSuccess'
 import MyWishlist from '../LayoutPage/DashboardLayout/DashboardPage/MyWishlist'
 import Librarian from '../PrivatePage/Librarian'
 import Admin from '../PrivatePage/Admin'
+import Features from '../Pages/Home/Home/Features'
+import NewService from '../Pages/Home/Home/NewService'
+import Faq from '../Pages/Home/Home/Faq'
+import Testimonial from '../Pages/Home/Home/Testimonial'
+import Category from '../Pages/Home/Home/Category'
+import Highlight from '../Pages/Home/Home/Highlight'
+import Blog from '../Pages/Home/Home/Blog'
+import Newsletter from '../Pages/Home/Home/Newsletter'
 
 
 const router = createBrowserRouter([
@@ -42,6 +50,38 @@ const router = createBrowserRouter([
           </Private>
         ),
       },
+      {
+        path: 'features',
+        Component: Features,
+      },
+      {
+        path: 'services',
+        Component: NewService,
+      },
+      {
+        path: 'fAQ',
+        Component: Faq,
+      },
+      {
+        path: 'Testimonials',
+        Component: Testimonial,
+      },
+      {
+        path: 'Categories',
+        Component: Category,
+      },
+      {
+        path: 'Highlights',
+        Component: Highlight,
+      },
+      {
+        path: 'Blogs',
+        Component: Blog,
+      },
+      {
+        path: 'Newsletter',
+        Component:Newsletter,
+      },
 
       {
         path: 'profile',
@@ -55,7 +95,6 @@ const router = createBrowserRouter([
         path: '/payment',
         Component: PaymentSuccess,
       },
-
     ],
   },
   {
@@ -74,7 +113,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Private><DashboardLayout></DashboardLayout></Private>,
+    element: (
+      <Private>
+        <DashboardLayout></DashboardLayout>
+      </Private>
+    ),
     children: [
       {
         path: '/dashboard/invoice',

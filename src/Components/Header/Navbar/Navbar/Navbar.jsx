@@ -41,6 +41,8 @@ const Navbar = () => {
   const handelNavigate = () => {
     navigate('/signup')
   }
+  const showPage = pages.filter(item => [1, 9, 3, 4].includes(item.id))
+  const NewLink = user ? pages : showPage
   const [role] = useRole()
   const settingLink=setting.filter(item=> !item.role || item.role.includes(role))
   return (
@@ -58,7 +60,7 @@ const Navbar = () => {
           {/* max width of navbar */}
           <Toolbar disableGutters>
             {/* large device */}
-           <Logo></Logo>
+            <Logo></Logo>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -86,11 +88,17 @@ const Navbar = () => {
                 onClose={handleCloseNavMenu}
                 sx={{ display: { xs: 'block', md: 'none' } }}
               >
-                {pages.map((page) => (
+                {NewLink.map((page) => (
                   <MenuItem key={page.id} onClick={handleCloseNavMenu}>
                     <NavLink to={page.path}>
                       {' '}
-                      <Typography sx={{ textAlign: 'center' }}>
+                      <Typography
+                        sx={{
+                          textAlign: 'center',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                        }}
+                      >
                         {page.icon}
                         {page.Name}
                       </Typography>
@@ -109,7 +117,7 @@ const Navbar = () => {
                 display: { xs: 'none', md: 'flex', justifyContent: 'center' },
               }}
             >
-              {pages.map((page) => (
+              {NewLink.map((page) => (
                 <NavLink to={page.path} key={page.id}>
                   {' '}
                   <Button
@@ -119,7 +127,7 @@ const Navbar = () => {
                       color: theme === 'light' ? 'black' : 'white',
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: 0.5,
+                      fontSize: 12,
                     }}
                   >
                     {page.icon}
@@ -128,7 +136,7 @@ const Navbar = () => {
                 </NavLink>
               ))}
             </Box>
-            <Box sx={{ mr: 1 }}>
+            <Box sx={{ mr: 0.3 }}>
               <DarkMode></DarkMode>
             </Box>
             {/* if user thake then sow blew the component otherwise show login page */}
@@ -162,7 +170,13 @@ const Navbar = () => {
                   {settingLink.map((setting) => (
                     <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
                       <NavLink to={setting.path}>
-                        <Typography sx={{ textAlign: 'center' }}>
+                        <Typography
+                          sx={{
+                            textAlign: 'center',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                          }}
+                        >
                           {setting.icon}
                           {setting.Name}
                         </Typography>

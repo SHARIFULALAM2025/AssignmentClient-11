@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { useContext, useState } from 'react'
-import { useParams } from 'react-router'
+import { useLocation, useNavigate, useParams } from 'react-router'
 import useAxiosSecure from '../../Hooks/useAxiosSecure'
 import Container from '../../Container/Container'
 import ReusableHeading from '../../ReusableFunction/ReusableHeading'
@@ -28,7 +28,7 @@ const style = {
 }
 const BookDetails = () => {
   const [value, setValue] = React.useState(0)
-  const [text, setText] = useState("")
+  const [text, setText] = useState('')
   const { user } = useContext(AuthContext)
   const AxiosSecure = useAxiosSecure()
   const { id } = useParams()
@@ -42,10 +42,19 @@ const BookDetails = () => {
   // console.log(bookData)
 
   const { _id, image, BookName, author, Category, Price, createAt } = bookData
-
+  const navigate = useNavigate()
+  const location = useLocation()
   /* modal */
   const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
+  const handleOpen = () => {
+    if (!user) {
+      navigate('/login', {
+        state: { form: location.pathname },
+      })
+      return
+    }
+    setOpen(true)
+  }
   const handleClose = () => setOpen(false)
   // modal data collect via
   const { register, handleSubmit } = useForm()
@@ -90,11 +99,22 @@ const BookDetails = () => {
     email: user?.email,
   }
   const handelWishlist = async () => {
-    const res = await AxiosSecure.post('/wishlist', bookWishlist)
-
-    if (res.data.insertedId) {
-      toast.success('wishlist added')
+    if (!user) {
+      navigate('/login', {
+        state: { form: location.pathname },
+      })
+      return
     }
+    try {
+      const res = await AxiosSecure.post('/wishlist', bookWishlist)
+      if (res.data.insertedId) {
+        toast.success('wishlist added')
+      }
+    } catch (error) {
+      toast.error("something went wrong",error)
+    }
+
+
   }
   const handelReview = async (e) => {
     e.preventDefault()
@@ -114,10 +134,10 @@ const BookDetails = () => {
       refetch()
       ratingRefresh()
       setValue(0)
-      setText("")
+      setText('')
     }
   }
-  const { data: rating = [],refetch:ratingRefresh } = useQuery({
+  const { data: rating = [], refetch: ratingRefresh } = useQuery({
     queryKey: ['rating', id],
     queryFn: async () => {
       const res = await AxiosSecure(`/review/${id}`)

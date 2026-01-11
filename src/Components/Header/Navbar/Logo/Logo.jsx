@@ -15,8 +15,7 @@ const Logo = () => {
           component="a"
           href="/"
           sx={{
-            mr: 2,
-            ml: 2,
+           
             display: { xs: 'none', md: 'flex' },
             fontFamily: 'monospace',
             fontWeight: 700,

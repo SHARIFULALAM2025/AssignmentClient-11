@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import React from 'react'
+import React, { useContext } from 'react'
 import useAxiosSecure from '../../Hooks/useAxiosSecure'
 import Container from '../../Container/Container'
 import Book from './Book'
@@ -9,8 +9,10 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import { AuthContext } from '../../Authentication/Auth/AuthContext/AuthContext'
 
 const Books = () => {
+  const {theme}=useContext(AuthContext)
   const AxiosSecure = useAxiosSecure()
   const [searchText, setSearchText] = useState('')
   const [filterBook, setFilterBook] = useState([])
@@ -46,44 +48,67 @@ const Books = () => {
   return (
     <div>
       <Container>
-        <div className="flex justify-center items-center mt-2 mb-2">
+        <div className="flex justify-center items-center  mb-2">
           <input
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="search book name"
             type="search"
-            className="py-1 px-2 dark:bg-white outline-none border rounded"
+            className="py-1 px-2 dark:bg-white outline-none mt-3 border rounded"
           />
 
           <button
             onClick={handelSearch}
-            className="py-1 px-2 bg-amber-200 rounded"
+            className="py-1 px-2 bg-amber-200 mt-3 rounded"
           >
             search
           </button>
         </div>
         <div className="flex justify-end mb-2 ">
-          <FormControl sx={{ width: '300px' }}>
-            <InputLabel
-              sx={{ color: 'black', '.dark &': { color: 'white' } }}
-              id="demo-simple-select-label"
-            >
-              Select price
-            </InputLabel>
-            <Select
-              sx={{ '.dark & ': { backgroundColor: 'red' } }}
-              className="w-1/2 "
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={sortBook}
-              label="Select price"
-              onChange={handleChange}
-            >
+          <FormControl
+            variant="standard"
+            sx={{
+              m: 1,
+              minWidth: 120,
+              '& .MuiInputLabel-root': {
+                color: theme === 'dark' ? 'white' : 'black',
+              },
+
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: theme === 'dark' ? '#fbbf24' : '#92400e',
+              },
+
+              '& .MuiInputBase-root': {
+                color: theme === 'dark' ? 'white' : 'black',
+              },
+
+              '& .MuiInput-underline:before': {
+                borderBottomColor: theme === 'dark' ? 'white' : 'black',
+              },
+
+              '& .MuiInput-underline:hover:before': {
+                borderBottomColor: theme === 'dark' ? '#fbbf24' : '#92400e',
+              },
+
+              '& .MuiInput-underline:after': {
+                borderBottomColor: theme === 'dark' ? '#fbbf24' : '#92400e',
+              },
+
+              '& .MuiSvgIcon-root': {
+                color: theme === 'dark' ? 'white' : 'black',
+              },
+            }}
+          >
+            <InputLabel>sort</InputLabel>
+            <Select value={sortBook} onChange={handleChange} label="Age">
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
               <MenuItem value="low to high">low to high</MenuItem>
               <MenuItem value="high to low">high to low</MenuItem>
             </Select>
           </FormControl>
         </div>
-        <div className="grid md:grid-cols-5 gap-3">
+        <div className="grid md:grid-cols-4 gap-3">
           {sortBook.map((item, index) => (
             <Book item={item} key={index}></Book>
           ))}

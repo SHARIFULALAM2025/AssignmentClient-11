@@ -12,11 +12,10 @@ const ReusableCard = ({
   buttonClassName = '',
   desClassName = '',
   TitleClassName = '',
+  priceClassName,
   onClick,
-  
-
+  PriceText,
 }) => {
-
   return (
     <div className={`${className}`}>
       {imageSrc && (
@@ -24,6 +23,7 @@ const ReusableCard = ({
       )}
       <h1 className={`${TitleClassName}`}>{title}</h1>
       <p className={`${desClassName}`}>{description}</p>
+      <h2 className={`${priceClassName}`}>{PriceText}</h2>
       <button onClick={onClick} className={`${buttonClassName}`}>
         {buttonText}
       </button>

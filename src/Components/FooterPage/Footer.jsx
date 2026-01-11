@@ -3,7 +3,8 @@ import Container from '../Container/Container'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import Logo from '../Header/Navbar/Logo/Logo'
 import { Link } from 'react-router'
-import XIcon from '@mui/icons-material/X'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+// import XIcon from '@mui/icons-material/X'
 import Avatar from '@mui/material/Avatar'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import InstagramIcon from '@mui/icons-material/Instagram'
@@ -12,7 +13,7 @@ const Footer = () => {
   return (
     <div className="">
       <Container>
-        <div className=" grid grid-cols-1 md:grid-cols-5 dark:text-white">
+        <div className=" grid grid-cols-1 p-3 md:grid-cols-5 dark:text-white">
           <div className="">
             <Logo></Logo>
             <div className="">
@@ -48,13 +49,28 @@ const Footer = () => {
           </div>
           <div className="">
             <h1 className="md:text-xl text-base font-semibold md:font-bold">
-              Account
+              Quick Link
             </h1>
-            <h1 className="md:text-base text-xs">My Account</h1>
-            <h1 className="md:text-base text-xs">Login / Register</h1>
-            <h1 className="md:text-base text-xs">Cart</h1>
-            <h1 className="md:text-base text-xs">Wishlist</h1>
-            <h1 className="md:text-base text-xs">Shop</h1>
+            <Link className="md:text-base text-xs" to="/fAQ">
+              fAQ
+            </Link>
+            <br></br>
+            <Link className="md:text-base text-xs" to="/Testimonials">
+              Testimonials
+            </Link>
+            <br></br>
+            <Link className="md:text-base text-xs" to="/Categories">
+              Categories
+            </Link>
+            <br></br>
+            <Link className="md:text-base text-xs" to="/Highlights">
+              Highlights
+            </Link>
+            <br></br>
+            <Link className="md:text-base text-xs" to="/Blogs">
+              Blogs
+            </Link>
+            <br></br>
           </div>
           <div className="">
             <h1 className="md:text-xl text-base font-semibold md:font-bold">
@@ -64,16 +80,20 @@ const Footer = () => {
               Home
             </Link>
             <br></br>
+            <Link className="md:text-base text-xs" to="/Newsletter">
+              Newsletter
+            </Link>
+            <br></br>
+            <Link className="md:text-base text-xs" to="/services">
+              services
+            </Link>
+            <br></br>
+            <Link className="md:text-base text-xs" to="/features">
+              features
+            </Link>
+            <br></br>
             <Link className="md:text-base text-xs" to="/books">
-              Books
-            </Link>
-            <br></br>
-            <Link className="md:text-base text-xs" to="/RequestDelivery">
-              Request Delivery
-            </Link>
-            <br></br>
-            <Link className="md:text-base text-xs" to="/dashboard">
-              Dashboard
+              books
             </Link>
           </div>
           <div className="space-y-3">
@@ -81,20 +101,28 @@ const Footer = () => {
               Social links
             </h1>
             <div className="flex gap-3">
-              <Tooltip title="Twitter" arrow>
-                <Avatar sx={{ bgcolor: 'green' }}>
-                  <XIcon></XIcon>
-                </Avatar>
+              <Tooltip title="LinkedIn" arrow>
+                <Link to="https://www.linkedin.com/in/shriful-alam-64a8b736b">
+                  {' '}
+                  <Avatar sx={{ bgcolor: 'green' }}>
+                    <LinkedInIcon></LinkedInIcon>
+                  </Avatar>
+                </Link>
               </Tooltip>
               <Tooltip title="Facebook" arrow>
-                <Avatar sx={{ bgcolor: 'red' }}>
-                  <FacebookIcon></FacebookIcon>
-                </Avatar>
+                <Link to="https://www.facebook.com/profile.php?id=61577170528426">
+                  <Avatar sx={{ bgcolor: 'red' }}>
+                    <FacebookIcon></FacebookIcon>
+                  </Avatar>
+                </Link>
               </Tooltip>
               <Tooltip title="YouTube" arrow>
-                <Avatar sx={{ bgcolor: 'green' }}>
-                  <YouTubeIcon></YouTubeIcon>
-                </Avatar>
+                <Link to="https://www.youtube.com/feed/you">
+                  {' '}
+                  <Avatar sx={{ bgcolor: 'green' }}>
+                    <YouTubeIcon></YouTubeIcon>
+                  </Avatar>
+                </Link>
               </Tooltip>
               <Tooltip title="Instagram" arrow>
                 <Avatar sx={{ bgcolor: 'red' }}>

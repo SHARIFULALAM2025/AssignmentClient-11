@@ -10,17 +10,20 @@ const Book = ({ item }) => {
   }
 
   return (
-    <div onClick={() => handelDetails(item._id)}>
+    <div>
       <ReusableCard
-        buttonText={`Price:${Price}`}
-        TitleClassName="dark:text-white"
+        onClick={() => handelDetails(item._id)}
+        buttonText="view details"
+        buttonClassName="w-full bg-green-500 rounded py-1"
+        PriceText={`Price:${Price} `}
+        TitleClassName="dark:text-white text-center"
         title={`Name :${BookName}`}
         description={`Author:${author}`}
-        desClassName="text-xs dark:text-white"
-        className="border p-1 shadow-xl rounded"
+        desClassName="text-xs dark:text-white text-center"
+        className=" p-1 shadow-xl rounded hover:shadow-xl transition-all duration-300 border border-transparent hover:border-blue-100 flex flex-col items-center text-center transform hover:-translate-y-2"
         imageSrc={image}
         imgClass="w-full bg-cover h-62 rounded "
-        buttonClassName="text-xs dark:text-white"
+        priceClassName="text-xs dark:text-white "
       ></ReusableCard>
     </div>
   )

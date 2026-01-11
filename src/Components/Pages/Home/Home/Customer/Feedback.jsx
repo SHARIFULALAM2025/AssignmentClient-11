@@ -19,7 +19,7 @@ const Feedback = () => {
   // console.log(feedBack)
 
   return (
-    <div className="mt-6">
+    <div className="">
       <div className="flex justify-center items-center">
         <div className="flex gap-3 items-center">
           <div className="">

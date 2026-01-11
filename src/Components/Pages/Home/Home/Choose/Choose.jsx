@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography'
 import { useQuery } from '@tanstack/react-query'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure'
+import Container from '../../../../Container/Container'
 
 const Choose = () => {
   const AxiosSecure = useAxiosSecure()
@@ -17,33 +18,35 @@ const Choose = () => {
   })
   return (
     <div>
-      <div className="md:mt-24">
-        <div className="text-center space-y-3 md:mb-12">
-          <h1 className="md:text-4xl text-xl font-semibold md:font-bold dark:text-white">
-            why Choose Our Book Courier services ?
-          </h1>
-          <p className="text-xs font-medium dark:text-white">
-            Enhance posture, mobility, and well-being effortlessly with Posture
-            Pro. Achieve proper alignment, reduce pain, and strengthen your body
-            with ease!
-          </p>
+      <Container>
+        <div className="">
+          <div className="text-center space-y-3 md:mb-12">
+            <h1 className="md:text-4xl text-xl font-semibold md:font-bold dark:text-white">
+              why Choose Our Book Courier services ?
+            </h1>
+            <p className="text-xs font-medium dark:text-white">
+              Enhance posture, mobility, and well-being effortlessly with
+              Posture Pro. Achieve proper alignment, reduce pain, and strengthen
+              your body with ease!
+            </p>
+          </div>
+          {AllQuestion.map((item) => (
+            <Accordion key={item._id} className="">
+              <AccordionSummary
+                className=""
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Typography component="span" className="">
+                  {item.question}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails className="">{item.Ans}</AccordionDetails>
+            </Accordion>
+          ))}
         </div>
-        {AllQuestion.map((item) => (
-          <Accordion key={item._id} className=''>
-            <AccordionSummary
-              className=''
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              <Typography component="span" className="">
-                {item.question}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails className="">{item.Ans}</AccordionDetails>
-          </Accordion>
-        ))}
-      </div>
+      </Container>
     </div>
   )
 }

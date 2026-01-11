@@ -25,7 +25,7 @@ const CarouselPage = () => {
     }
   }
   useEffect(() => {
-    fetch('https://assignment-server-11-steel.vercel.app/myCarousel')
+    fetch('http://localhost:5000/myCarousel')
       .then((res) => res.json())
       .then((result) => {
         setNewProperty(result)
@@ -49,10 +49,10 @@ const CarouselPage = () => {
                 />
               </figure>
               <div className="absolute inset-0  flex flex-col justify-center items-center text-white text-center px-5 ">
-                <h1 className="text-2xl font-bold text-red-600">
+                <h1 className="text-2xl font-bold text-white">
                   {item.title}
                 </h1>
-                <p className="text-xs font-medium text-red-600">{item.des}</p>
+                <p className="text-xs font-medium text-white">{item.des}</p>
               </div>
             </div>
           ))}
